@@ -18,9 +18,9 @@ services:
       -c /copyparty.conf
       -i 0.0.0.0
       -p 3923
-      --lo /config/copyparty.log
+      --log /config/copyparty.log
       --db /config/copyparty.db
-      --al /config/access.log
+      --access-log /config/access.log
       --no-robots
       --rh
     healthcheck:
