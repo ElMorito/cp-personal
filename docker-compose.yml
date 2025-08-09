@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  copyparty-personal:
+    image: copyparty/ac
+    container_name: copyparty-personal
+    restart: unless-stopped
+    ports:
+      - "3923:3923"
+    volumes:
+      - ./data:/data
+      - ./config:/config
+      - ./copyparty.conf:/copyparty.conf:ro
+    environment:
+      - TZ=Europe/Berlin
+      - COPYPARTY_CONFIG=/copyparty.conf
+    command: >
+      --config-file /copyparty.conf
+      --host 0.0.0.0
+      --port 3923
+      --log-file /config/copyparty.log
+      --db-path /config/copyparty.db
+      --access-log /config/access.log
+      --no-robots
+      --rproxy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3923/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
