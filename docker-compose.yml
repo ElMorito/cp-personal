@@ -22,7 +22,7 @@ services:
       --db-path /config/copyparty.db
       --access-log /config/access.log
       --no-robots
-      --rproxy
+      --rproxy-hdr
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3923/"]
       interval: 30s
