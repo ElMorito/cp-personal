@@ -15,14 +15,14 @@ services:
       - TZ=Europe/Berlin
       - COPYPARTY_CONFIG=/copyparty.conf
     command: >
-      --config-file /copyparty.conf
-      --host 0.0.0.0
-      --port 3923
-      --log-file /config/copyparty.log
-      --db-path /config/copyparty.db
-      --access-log /config/access.log
+      -c /copyparty.conf
+      -i 0.0.0.0
+      -p 3923
+      --lo /config/copyparty.log
+      --db /config/copyparty.db
+      --al /config/access.log
       --no-robots
-      --rproxy-hdr
+      --rh
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3923/"]
       interval: 30s
